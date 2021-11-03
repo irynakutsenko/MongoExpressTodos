@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Mongo-Express</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" name="tamaño" placeholder="Tamaño" />
+        <input type="text" name="color" placeholder="Color" />
+        <input type="text" name="material" placeholder="Material" />
+        <input type="number" name="patas" placeholder="Patas" />
+        <button id="añadir">Añadir</button>
+        <button id="modificar">Modificar</button>
+        <button id="eliminar">Eliminar</button>
+    </form>
+</body>
+<script>
+    document.querySelector("#añadir").addEventListener("click", function (event) {
+        event.preventDefault();
+        let tamaño = document.querySelector("input[name='tamaño']").value;
+        let color = document.querySelector("input[name='color']").value;
+        let material = document.querySelector("input[name='material']").value;
+        let patas = document.querySelector("input[name='patas']").value;
+
+        let mesa = {
+            tamaño: tamaño,
+            color: color,
+            material: material,
+            patas: patas
+        };
+        console.log(mesa);
+        let body = JSON.stringify(mesa)
+
+        fetch("/api/anyadir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: body
+        }).then(function (response) {
+            return response.json()
+        }).then(function (res) {
+            console.log(res)
+        })
+    })
+    document.querySelector("#modificar").addEventListener("click", function (event) {
+        event.preventDefault();
+        let tamaño = document.querySelector("input[name='tamaño']").value;
+        let color = document.querySelector("input[name='color']").value;
+        let material = document.querySelector("input[name='material']").value;
+        let patas = document.querySelector("input[name='patas']").value;
+
+        let mesa = {
+            tamaño: tamaño,
+            color: color,
+            material: material,
+            patas: patas
+        };
+        console.log(mesa);
+        let body = JSON.stringify(mesa)
+
+        fetch("/api/modificar", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: body
+        }).then(function (response) {
+            return response.json()
+        }).then(function (res) {
+            console.log(res)
+        })
+    })
+    document.querySelector("#eliminar").addEventListener("click", function (event) {
+        event.preventDefault();
+        let tamaño = document.querySelector("input[name='tamaño']").value;
+        let color = document.querySelector("input[name='color']").value;
+        let material = document.querySelector("input[name='material']").value;
+        let patas = document.querySelector("input[name='patas']").value;
+
+        let mesa = {
+            tamaño: tamaño,
+            color: color,
+            material: material,
+            patas: patas
+        };
+        console.log(mesa);
+        let body = JSON.stringify(mesa)
+
+        fetch("/api/borrar", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: body
+        }).then(function (response) {
+            return response.json()
+        }).then(function (res) {
+            console.log(res)
+        })
+    })
+</script>
+
+</html>
